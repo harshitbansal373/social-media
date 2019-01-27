@@ -2,7 +2,7 @@
 
 <!-- Search Widget -->
 
-<div class="card my-4">
+<div class="card my-4 view">
   <h5 class="card-header">Search</h5>
   <form action="search.php" method="POST">
   <div class="card-body">
@@ -16,9 +16,9 @@
   </form>
 </div>
 
-<!-- Search Widget -->
+<!-- login Widget -->
 
-<div class="card my-4">
+<div class="card my-4 view">
 
   <?php if(isset($_SESSION['user_role'])): ?>
 
@@ -53,7 +53,7 @@
 </div>
 
 <!-- Categories Widget -->
-<div class="card my-4">
+<div class="card my-4 view">
   <h5 class="card-header text-center">Categories</h5>
   <div class="card-body">
       <?php 

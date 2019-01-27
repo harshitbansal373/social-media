@@ -29,7 +29,7 @@
 
                 <div class="media">
                     <a href="profile.php?username='<?php echo $username; ?>'">
-                    <img src="images/nouser2.jpg" class="mx-3" alt="...">
+                    <img src="images/nouser.png" class="mx-3" alt="...">
                     </a>
                     <div class="media-body">
                         <h6 class="mt-0">
