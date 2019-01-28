@@ -29,7 +29,7 @@
             $count = mysqli_num_rows($find_count);
             $count = ceil($count/$per_page);
 
-            $query = "SELECT * FROM posts LIMIT $page_1 ,$per_page";
+            $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT $page_1 ,$per_page";
             $select_all_posts_query = mysqli_query($connection,$query);
             while($row = mysqli_fetch_assoc($select_all_posts_query)){
                 $post_id = $row['post_id'];

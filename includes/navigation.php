@@ -31,10 +31,11 @@
                 echo '<li class="nav-item "><a class="nav-link" href="login.php">Login</a></li>';
               }
               ?>
-              <li class="nav-item ">
-                <a class="nav-link" href="registration.php">Registration
-                </a>
-              </li> 
+              <?php
+              if(!isset($_SESSION['user_role'])){
+                echo '<li class="nav-item "><a class="nav-link" href="registration.php">Registration</a></li>';
+              }
+              ?>
               <li class="nav-item ">
                 <a class="nav-link" href="contact.php">Contact
                 </a>

@@ -3,8 +3,6 @@
 <!-- Navigation -->
 <?php include "includes/navigation.php"; ?>
 
-
-
 <!-- Page Content -->
 <div class="container">
     <div class="row">
@@ -15,11 +13,10 @@
                 $post_category_id = $_GET['category'];
             }
 
-            $query = "SELECT * FROM posts WHERE post_category_id = {$post_category_id} ";
+            $query = "SELECT * FROM posts WHERE post_category_id = {$post_category_id} ORDER BY post_id DESC";
             $select_all_posts_count_query = mysqli_query($connection,$query);
-            $count = mysqli_num_rows($select_all_posts_count_query);
-        
             confirm_query($select_all_posts_count_query);
+            $count = mysqli_num_rows($select_all_posts_count_query);
 
             if($count==0){
             ?>

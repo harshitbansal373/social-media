@@ -3,7 +3,6 @@
 <!-- Navigation -->
 <?php include "includes/navigation.php"; ?>
 
-
 <!-- Page Content -->
 <div class="container">
     <div class="row">
@@ -49,11 +48,9 @@
             if(isset($_POST['submit'])){
                 $search = $_POST['search'];
             
-                $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'";
+                $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' ORDER BY post_id DESC";
                 $search_query = mysqli_query($connection,$query);
-            
                 confirm_query($search_query);
-            
                 $count = mysqli_num_rows($search_query);
 
                 if($count == 0){
