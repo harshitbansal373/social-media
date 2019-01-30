@@ -17,44 +17,55 @@ if(isset($_POST['create_user'])){
     // $location = "../images/$post_image";
     // move_uploaded_file($post_temp_image,$location);
 
-    $user_firstname = mysqli_real_escape_string($connection,$user_firstname);
-    $user_lastname = mysqli_real_escape_string($connection,$user_lastname);
-    $username = mysqli_real_escape_string($connection,$username);
-    $user_email = mysqli_real_escape_string($connection,$user_email);
-    $user_password = mysqli_real_escape_string($connection,$user_password);
+    if(!empty($username) && !empty($user_email) && !empty($user_password)){
+        $user_firstname = mysqli_real_escape_string($connection,$user_firstname);
+        $user_lastname = mysqli_real_escape_string($connection,$user_lastname);
+        $username = mysqli_real_escape_string($connection,$username);
+        $user_email = mysqli_real_escape_string($connection,$user_email);
+        $user_password = mysqli_real_escape_string($connection,$user_password);
 
-    $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
+        $user_password = password_hash($user_password, PASSWORD_BCRYPT, array('cost' => 12));
 
-    // $query = "INSERT INTO users(user_firstname,user_lastname,user_role,username,user_email,user_password) ";
-    // $query .= "VALUES( '{$user_firstname}','{$user_lastname}','{$user_role}','{$username}','{$user_email}','{$user_password}' )";
+        $query = "SELECT username FROM users WHERE username = '{$username}' ";
+        $user_exist_query = mysqli_query($connection,$query);
+        $count_user_exist = mysqli_num_rows($user_exist_query);
 
-    // $create_user_query = mysqli_query($connection,$query);
+        if($count_user_exist==0){
+            $query = "INSERT INTO users(user_firstname,user_lastname,user_role,username,user_email,user_password) ";
+            $query .= "VALUES(?,?,?,?,?,?)";
+            $stmt_create_user_query = mysqli_prepare($connection,$query);
+            mysqli_stmt_bind_param($stmt_create_user_query,"ssssss",$user_firstname,$user_lastname,$user_role,$username,$user_email,$user_password);
+            mysqli_stmt_execute($stmt_create_user_query);
+            mysqli_stmt_close($stmt_create_user_query);
+            confirm_query($stmt_create_user_query);
 
-    // confirm_query($create_user_query);
+            $add_user_message = 'Your Registration has been submitted <a href="users.php">View here</a><br>';
+        }else{
+            $user_exist_message = 'Username Already exist!!!';
+        }
 
-    $query = "INSERT INTO users(user_firstname,user_lastname,user_role,username,user_email,user_password) ";
-    $query .= "VALUES(?,?,?,?,?,?)";
+    }else{
+        $message = "fields cannot be empty";
+    }
 
-    $stmt_create_user_query = mysqli_prepare($connection,$query);
-    mysqli_stmt_bind_param($stmt_create_user_query,"ssssss",$user_firstname,$user_lastname,$user_role,$username,$user_email,$user_password);
-    mysqli_stmt_execute($stmt_create_user_query);
-    mysqli_stmt_close($stmt_create_user_query);
-
-    confirm_query($stmt_create_user_query);
-
-    header("location:users.php");
-
+}else{
+    $message = "";
 }
 
 ?>
 
 <div class="col-sm-5">
     <form action="" method="POST" enctype="multipart/form-data">
+        <h6><?php if(isset($add_user_message)){echo $add_user_message;} ?></h6>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" >
+            <h6 class="text-danger ml-3"><?php if(isset($user_exist_message)){echo $user_exist_message;} ?></h6>
+        </div>
         <div class="form-group">
             <label for="firstname">Firstname</label>
             <input type="text" class="form-control" name="firstname" >
         </div>
-        
         <div class="form-group">
             <label for="lastname">Lastname</label>
             <input type="text" class="form-control" name="lastname" >
@@ -69,10 +80,6 @@ if(isset($_POST['create_user'])){
             </select>
         </div>
 
-        <div class="form-group">
-            <label for="username">username</label>
-            <input type="text" class="form-control" name="username" >
-        </div>
         <div class="form-group">
             <label for="user_email">Email</label>
             <input type="email" class="form-control" name="user_email" >

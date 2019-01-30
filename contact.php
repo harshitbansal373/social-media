@@ -27,7 +27,7 @@ $header = $_POST['email'];
 <div class="container">
     <section id="login">
         <div class="row  justify-content-center align-items-center">
-            <div class="col-sm-5 border border-dark mt-4 px-5 py-3">
+            <div class="col-sm-5 boxview mt-4 px-5 py-3">
                 <div class="form-wrap">
 				    <h3 class="text-center"><i class="fas fa-envelope fa-3x"></i></h3>
                         <form role="form" action="contact.php" method="post" id="login-form" autocomplete="off">

@@ -7,9 +7,9 @@
 <div class="container">
     <section id="login">
         <div class="row  justify-content-center align-items-center">
-            <div class="col-sm-4 col-sm-offset-4">
+            <div class="col-sm-4 col-sm-offset-4 boxview mt-4 px-5 py-2">
                 <div class="form-wrap">
-					<h3 class="text-center mt-2"><i class="fas fa-user-circle fa-4x"></i></h3>
+					<h3 class="text-center"><i class="fas fa-user-circle fa-4x"></i></h3>
 					<h2 class="text-center">Login</h2>
                 	    <form role="form" action="includes/login.php" method="post" id="login-form" autocomplete="off">
                 			<div class="input-group mb-3">

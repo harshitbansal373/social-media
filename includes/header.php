@@ -33,6 +33,11 @@
         background-color:white;
         border-radius:8px;
       }
+
+      .boxview{
+        background-color: #e4f1fe;
+        border-radius:8px;       
+      }
     </style>
   </head>
 
