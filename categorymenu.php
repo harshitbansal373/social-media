@@ -51,7 +51,7 @@
                     }
                     $name = $user_firstname.' '.$user_lastname;
                     ?>
-                    by <a href="post.php?p_id='<?php echo $post_id; ?>'"><?php echo $name; ?></a>
+                    by <a href="profile.php?username='<?php echo $post_user; ?>'"><?php echo $name; ?></a>
                 </h5>
                 <h6><i class="far fa-clock"></i> <?php echo $post_date; ?></h6>
                 <hr>

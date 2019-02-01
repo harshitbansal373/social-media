@@ -68,7 +68,7 @@
           <div class="col-4 col-sm-3 col-lg-4">
               <ul class="list-unstyled mb-0">
                   <li class='nav-item text-center mb-2'>
-                  <a style="font-family: roboto; color:#2c3e50;" href='categorymenu.php?category=$cat_id'><h6><?php echo '#'.$cat_title; ?></h6></a></li>
+                  <a style="font-family: roboto; color:#2c3e50;" href='categorymenu.php?category=<?php echo $cat_id; ?>'><h6><?php echo '#'.$cat_title; ?></h6></a></li>
               </ul>
           </div>
           <?php } ?>
