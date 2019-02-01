@@ -23,7 +23,7 @@
   <?php if(isset($_SESSION['user_role'])): ?>
 
     <h5 class="card-header">Logged in as <?php echo $_SESSION['username']; ?></h5>
-    <span class="input-group-btn text-center">
+    <span class="input-group-btn text-center my-2">
     <a href="includes/logout.php" class="btn btn-primary">Logout</a>
     </span>
 
