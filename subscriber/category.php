@@ -106,9 +106,9 @@
                         echo "<td>{$cat_title}</td>";
 
                         if($count_cat==0){
-                            echo "<td>cross</td>";   
+                            echo '<td><i class="fas fa-times"></i></td>';   
                         }else{
-                            echo "<td>tick</td>";
+                            echo '<td><i class="fas fa-check"></i></td>';
                         }
                     
                         echo "<td>{$count_cat}</td>";   

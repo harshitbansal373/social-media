@@ -59,6 +59,7 @@ $password = $_POST['password'];
 	    		    <h3 class="text-center mb-3"><i class="fas fa-portrait fa-3x"></i></h3>
                         <form role="form" action="registration.php" method="post" id="login-form" autocomplete="off">
                             <h6><?php if(isset($add_user_message)){echo $add_user_message;} ?></h6>
+                            <h6><?php if(isset($message)){echo $message;} ?></h6>
                             <div class="form-group">
                                 <label for="username" class="sr-only">username</label>
                                 <input type="text" name="username" id="username" class="form-control" placeholder="Enter Desired Username">

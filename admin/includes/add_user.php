@@ -57,6 +57,7 @@ if(isset($_POST['create_user'])){
 <div class="col-sm-5">
     <form action="" method="POST" enctype="multipart/form-data">
         <h6><?php if(isset($add_user_message)){echo $add_user_message;} ?></h6>
+        <h6><?php if(isset($message)){echo $message;} ?></h6>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" name="username" >
