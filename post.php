@@ -17,9 +17,13 @@
                 if(isset($_GET['p_id'])){
                    $the_post_id = $_GET['p_id'];
                 }
+
+                include "like.php";        
+
                 $query = "SELECT * FROM posts WHERE post_id = {$the_post_id} ";
                 $select_all_posts_query = mysqli_query($connection,$query);
                 while($row = mysqli_fetch_assoc($select_all_posts_query)){
+                   $post_id = $row['post_id'];
                    $post_title = $row['post_title'];
                    $post_user = $row['post_user'];
                    $post_date = $row['post_date'];
@@ -29,7 +33,7 @@
 
 
             <!--first Blog Post -->
-            <div class="mt-4 p-4 view">
+            <div class="mt-3 p-3 view">
                 <h4> 
                   <a href="post.php?p_id='<?php echo $post_id; ?>'"><?php echo $post_title; ?></a>
                 </h4>
@@ -46,11 +50,35 @@
                     by <a href="profile.php?username='<?php echo $post_user; ?>'"><?php echo $name; ?></a>
                 </h5>
                 <h6> <i class="far fa-clock"></i> <?php echo $post_date; ?></h6>
-                <hr>
-                <a href="post.php?p_id='<?php echo $post_id; ?>'">
-                <img class="img-fluid" src="images/<?php echo imagePlaceholder($post_image);?>" alt="img">
-                </a>
-                <h6 class="my-3"><?php echo $post_content; ?></h6>  
+                
+                <div style="margin:-2.3%; margin-top:0;margin-bottom:0;">
+                    <a href="post.php?p_id='<?php echo $post_id; ?>'">
+                    <img class="img-fluid" src="images/<?php echo imagePlaceholder($post_image);?>" alt="img">
+                    </a>
+                </div>
+                <h6 class="my-3"><?php echo $post_content; ?></h6>
+
+                <?php if(isset($_SESSION['username'])){ ?>
+                <div class="row border-top py-1 mt-2 text-center">
+                    <form class="col-6" action="" method="POST">
+                        <input style="display:none" type="text" class="form-control" name="post_id" value="<?php echo $post_id; ?>" >
+                        <?php
+                        if(isset($_SESSION['user_id'])){
+                            $user_id = $_SESSION['user_id'];
+                            $query = "SELECT * FROM post_like WHERE user_id = $user_id AND post_id = $post_id";
+                            $select_user_like_query = mysqli_query($connection,$query);
+                            $count_user_like = mysqli_num_rows($select_user_like_query);
+                            if($count_user_like!=0){
+                                echo '<input type="submit" class="text-dark btn-block" name="unlike" value="Unlike">';
+                            }else{
+                                echo '<input type="submit" class="text-dark btn-block" name="like" value="Like">';
+                            }
+                        }?>
+                    </form>
+                    <div class="col-6"><input type="submit" class="text-dark btn-block" name="comments" value="Comments"></div>
+                </div>  
+                <?php } ?>
+
             </div>
                 
             <?php } ?>

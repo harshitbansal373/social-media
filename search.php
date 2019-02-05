@@ -70,7 +70,7 @@
  
                    
             <!--first Blog Post -->
-            <div class="mt-4 p-4 view">
+            <div class="mt-3 p-3 view">
                 <h4> 
                   <a href="post.php?p_id='<?php echo $post_id; ?>'"><?php echo $post_title; ?></a>
                 </h4>
@@ -87,10 +87,13 @@
                     by <a href="profile.php?username='<?php echo $post_user; ?>'"><?php echo $name; ?></a>
                 </h5>
                 <h6> <i class="far fa-clock"></i> <?php echo $post_date; ?></h6>
-                <hr>
-                <a href="post.php?p_id='<?php echo $post_id; ?>'">
-                <img class="img-fluid" src="images/<?php echo imagePlaceholder($post_image);?>" alt="img">
-                </a>
+
+                <div style="margin:-2.3%; margin-top:0;margin-bottom:0;">
+                    <a href="post.php?p_id='<?php echo $post_id; ?>'">
+                    <img class="img-fluid" src="images/<?php echo imagePlaceholder($post_image);?>" alt="img">
+                    </a>
+                </div>
+                
                 <h6 class="my-3"><?php echo $post_content; ?></h6>
                     <a href="post.php?p_id='<?php echo $post_id; ?>'" class="btn btn-primary">Read More &rarr;</a>       
             </div>
