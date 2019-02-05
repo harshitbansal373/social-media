@@ -12,7 +12,7 @@
     if(isset($_GET['username'])){
         $the_username = $_GET['username'];
     
-        $query = "SELECT * FROM users WHERE username = {$the_username} ";
+        $query = "SELECT * FROM users WHERE username = $the_username ";
         $select_user_query = mysqli_query($connection,$query);
         $count_user = mysqli_num_rows($select_user_query);
     
@@ -50,11 +50,9 @@
             if(isset($_POST['unfollow'])){
                 $follower_id = $_SESSION['user_id'];
 
-                if($user_id!=$follower_id){
-                    $query = "DELETE FROM followers WHERE user_id = $user_id AND follower_id = $follower_id";
-                    $unfollow_query = mysqli_query($connection,$query);
-                    $isfollowing = False;
-                }
+                $query = "DELETE FROM followers WHERE user_id = $user_id AND follower_id = $follower_id";
+                $unfollow_query = mysqli_query($connection,$query);
+                $isfollowing = False;
             }
 
             if(isset($_SESSION['user_id'])){
@@ -79,9 +77,9 @@
 <?php if(isset($username)){ ?>
 
 <h2><?php echo $username." 's Profile"; ?></h2>
-<form action="profile.php?username=<?php echo $username; ?>" method="POST">
+<form action="profile.php?username='<?php echo $username; ?>' " method="POST">
     <?php
-        if($user_id!=isset($follower_id)){
+        if($user_id!=$_SESSION['user_id']){
             if($isfollowing ==True){
                 echo '<input type="submit" name="unfollow" value="Unfollow">';
             }else{
