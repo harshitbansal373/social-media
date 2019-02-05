@@ -2,7 +2,7 @@
 
 function imagePlaceholder($image=''){
     if(!$image){
-        return 'nopost.jpg';
+        return 'nopost.png';
     }
     else{
         return $image;
