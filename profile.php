@@ -79,6 +79,7 @@
 <h2><?php echo $username." 's Profile"; ?></h2>
 <form action="profile.php?username='<?php echo $username; ?>' " method="POST">
     <?php
+    if(isset($_SESSION['user_id'])){
         if($user_id!=$_SESSION['user_id']){
             if($isfollowing ==True){
                 echo '<input type="submit" name="unfollow" value="Unfollow">';
@@ -86,6 +87,7 @@
                 echo '<input type="submit" name="follow" value="Follow">';
             }
         }
+    }
     ?>
 </form>
 
