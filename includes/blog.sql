@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2019 at 10:52 AM
+-- Generation Time: Feb 09, 2020 at 09:51 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cms`
+-- Database: `blog`
 --
 
 -- --------------------------------------------------------
@@ -41,10 +41,9 @@ CREATE TABLE `categories` (
 
 INSERT INTO `categories` (`cat_id`, `cat_title`, `cat_creator`, `cat_user`) VALUES
 (1, 'home', 'harshitbansal', 'harshit,raghuveer23,raghuveer,vikas,daau,'),
-(3, 'service', 'harshitbansal', ''),
-(5, 'contact', 'harshitbansal', ''),
-(7, 'about', 'harshitbansal', 'raghuveer,'),
-(50, 'hello', 'raghuveer', '');
+(2, 'service', 'harshitbansal', ''),
+(3, 'contact', 'harshitbansal', ''),
+(4, 'about', 'harshitbansal', 'raghuveer,');
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,29 @@ INSERT INTO `comments` (`comment_id`, `comment_post_id`, `comment_author`, `comm
 (25, 1, 'daau', 'example@gmail.com', 'vfadvcv', 'show', '2019-01-16'),
 (26, 1, 'dinesh', 'example@gmail.com', 'vfvfdvfsv', 'show', '2019-01-16'),
 (27, 2, 'daau', 'example@gmail.com', 'fvfvfev', 'show', '2019-01-16'),
-(28, 2, 'dinesh', 'example@gmail.com', 'vfbgrbrt', 'show', '2019-01-16');
+(28, 2, 'dinesh', 'example@gmail.com', 'vfbgrbrt', 'show', '2019-01-16'),
+(37, 2, 'fdgd', 'example@gmail.com', 'cxvfv', 'show', '2019-01-19'),
+(38, 14, 'dinesh', 'example@gmail.com', 'jdvhjcds', 'show', '2019-02-06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followers`
+--
+
+CREATE TABLE `followers` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `follower_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `followers`
+--
+
+INSERT INTO `followers` (`id`, `user_id`, `follower_id`) VALUES
+(29, 20, 22),
+(30, 16, 22);
 
 -- --------------------------------------------------------
 
@@ -110,6 +131,28 @@ INSERT INTO `posts` (`post_id`, `post_category_id`, `post_title`, `post_user`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `post_like`
+--
+
+CREATE TABLE `post_like` (
+  `id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post_like`
+--
+
+INSERT INTO `post_like` (`id`, `post_id`, `user_id`) VALUES
+(18, 3, 22),
+(20, 1, 16),
+(23, 14, 22),
+(24, 10, 22);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -131,7 +174,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `user_password`, `user_firstname`, `user_lastname`, `user_email`, `user_image`, `user_role`, `randSalt`, `token`) VALUES
-(16, 'harshitbansal', '$2y$12$dO5hsecobi4ZK5chqFq18OTIIt/VF2u14PXxrhGvnQNxl1VMfm1.u', 'Harshit', 'Bansal', 'harshitbansal373@gmail.com', '', 'admin', '$2y$10$iusesomecrazystrings22', 'a029beafe353f1a9caa33d1effbb08fbb75aad7a2e428b3a17c2c494da6da5befd98c8ec09945e57e3d929389eabe3e89434'),
+(16, 'harshitbansal', '$2y$12$GTDPELZfbHTkC.IenYALR.shp4sdNWh4XIR8u3TtDOPUYLqqZcwdy', 'Harshit', 'Bansal', 'harshitbansal373@gmail.com', '', 'admin', '$2y$10$iusesomecrazystrings22', ''),
 (17, 'vijay', '$2y$10$iusesomecrazystrings2uvgnjnDOGIE6JPA9zzq36EdPnYMUav/S', 'vijay', 'malik', 'example@gmail.com', '', 'admin', '$2y$10$iusesomecrazystrings22', '77020c98efbc545715012c76bec5aaec6e8a2cfced12d25f1c2f2626a1ef4af2271b1e458848d80a745e6b578b954cf34427'),
 (20, 'priyanka', '$2y$12$JWAZjgfODGxhEpsJShk4TO5MHGZ/hUnliFfkwPEvsLkfCJOdJ6ugy', 'priyanka', 'sharma', 'example@gmail.com', '', 'subscriber', '$2y$10$iusesomecrazystrings22', '77020c98efbc545715012c76bec5aaec6e8a2cfced12d25f1c2f2626a1ef4af2271b1e458848d80a745e6b578b954cf34427'),
 (22, 'raghuveer', '$2y$12$kTq/GUEkryih.nT9O77KfeyMp9165ZIqlvu1dEOQLKW8RWv0te46W', 'raghuveer', 'singh', 'example123@gmail.com', '', 'subscriber', '$2y$10$iusesomecrazystrings22', '77020c98efbc545715012c76bec5aaec6e8a2cfced12d25f1c2f2626a1ef4af2271b1e458848d80a745e6b578b954cf34427'),
@@ -155,16 +198,15 @@ CREATE TABLE `users_online` (
 
 INSERT INTO `users_online` (`id`, `session`, `time`) VALUES
 (28, 'acqtk6uivrc3mancr6jubo36g8', 1541324861),
-(29, '4apntrapjcfk8ndt8dqqt2p2ke', 1540815264),
-(30, '12jl84p6ipimtsk2bgvnj3ahsv', 1541324814),
-(31, 'l01vbrguta5mbuo9bjhfdjtqn3', 1541648757),
-(32, 'u1aiicjkan4vitf7is01dhmtml', 1541851341),
-(33, 'll295uo67jd65maupgvh27bqj6', 1544711040),
-(34, 'qm3h497sfmd4tg81gudlused9p', 1546445787),
-(35, 'mmbp0ijsam7qp4gvthvb2u4bki', 1546847172),
-(36, '1hnf4hkk6qu1egmnin0e6ahsfu', 1547194772),
-(37, 'hmr2t9ot4sj9mdq11o2ibj6dpj', 1547571211),
-(38, 'ipke8cras4eauiu50upkm1mocd', 1547718561);
+(40, 'ipke8cras4eauiu50upkm1mocd', 1548756574),
+(41, 'l4qj6m6jv3ges0us7cqvrqovhq', 1548401977),
+(42, '967mcvvjqf2gf27te53e9tjc93', 1548827219),
+(43, '7riesnhk2ctjrqftl2m6q92b6d', 1548943786),
+(44, 'teimige8gb1sk1u1sfog4gnrr8', 1549472852),
+(45, 'n5qsfhrunqtcu94d16hiq7r7h7', 1549692448),
+(46, 'eevjogdo44e8b5dj3ekf61u4pq', 1549895980),
+(47, 'hc66giql74859uhrpc6hksv3kq', 1550063812),
+(48, '5ip2pqjfirk0hsq6eq3cdpbmop', 1550646940);
 
 --
 -- Indexes for dumped tables
@@ -183,10 +225,22 @@ ALTER TABLE `comments`
   ADD PRIMARY KEY (`comment_id`);
 
 --
+-- Indexes for table `followers`
+--
+ALTER TABLE `followers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `posts`
 --
 ALTER TABLE `posts`
   ADD PRIMARY KEY (`post_id`,`post_category_id`);
+
+--
+-- Indexes for table `post_like`
+--
+ALTER TABLE `post_like`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -208,19 +262,31 @@ ALTER TABLE `users_online`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `comment_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+
+--
+-- AUTO_INCREMENT for table `followers`
+--
+ALTER TABLE `followers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `post_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `post_like`
+--
+ALTER TABLE `post_like`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -232,7 +298,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users_online`
 --
 ALTER TABLE `users_online`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
